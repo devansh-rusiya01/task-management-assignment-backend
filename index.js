@@ -16,7 +16,7 @@ connectDB();
 const app = express();
 app.use(express.json());
 app.use(cors({
-  origin: "http://localhost:3000",
+  origin: "https://task-manager-client-lime.vercel.app/",
   methods: "GET,POST,PUT,DELETE",
   allowedHeaders: "Content-Type,Authorization",
   credentials: true,
