@@ -16,11 +16,10 @@ connectDB();
 const app = express();
 app.use(express.json());
 app.use(cors({
-  origin: "https://task-manager-client-lime.vercel.app/",
-  methods: "GET,POST,PUT,DELETE",
-  allowedHeaders: "Content-Type,Authorization",
+  origin: "https://task-manager-client-lime.vercel.app",
   credentials: true,
 }));
+
 
 app.use(cookieParser()); 
 app.post("/login",(req,res)=>{
