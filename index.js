@@ -16,15 +16,18 @@ connectDB();
 const app = express();
 app.use(express.json());
 app.use(cors({
-  origin: "http://localhost:5117", // Allow requests from this domain
-  methods: "GET,POST,PUT,DELETE", // Allowed HTTP methods
-  allowedHeaders: "Content-Type,Authorization", // Allowed headers
-  credentials: true, // Allow cookies & authentication headers
+  origin: "http://localhost:3000",
+  methods: "GET,POST,PUT,DELETE",
+  allowedHeaders: "Content-Type,Authorization",
+  credentials: true,
 }));
+
 app.use(cookieParser()); 
+app.post("/login",(req,res)=>{
+  res.json({message:"everything looks fine"})
+})
 
-
-app.use("/api/auth/admin", adminRoutes);
+app.use("/api/auth/user", adminRoutes);
 app.use("/api/tasks", taskRoutes);
 
 app.listen(5000, () => console.log("Server running on port 5000"));

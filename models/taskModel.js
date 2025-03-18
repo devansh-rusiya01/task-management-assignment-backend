@@ -5,7 +5,7 @@ const taskSchema = mongoose.Schema(
     title: { type: String, required: true },
     description: { type: String },
     status: { type: String, enum: ["Pending", "In Progress", "Completed"], default: "Pending" },
-    deadline: { type: Date, required: true }, // Ensure deadline is stored as a Date
+    deadline: { type: Date, required: true }, 
     assignedTo: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
     assignedBy: { type: mongoose.Schema.Types.ObjectId, ref: "User",required:true },
 

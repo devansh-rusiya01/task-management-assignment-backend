@@ -7,7 +7,7 @@ const userSchema = mongoose.Schema(
     email: { type: String, required: true, unique: true },
     password: { type: String,},
     role: { type: String, enum: ["user", "admin"], default: "user" },
-    adminId:{type:mongoose.Schema.Types.ObjectId,ref:"User",default:"null"}
+    adminId:{type:mongoose.Schema.Types.ObjectId,ref:"User",default:null}
   },
   { timestamps: true }
 );

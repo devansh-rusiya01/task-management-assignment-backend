@@ -19,12 +19,12 @@ const createUserByAdmin = async (req, res) => {
 
   
     const randomPassword = crypto.randomBytes(8).toString("hex"); 
-    const hashedPassword = await bcrypt.hash(randomPassword, 10);
+    // const hashedPassword = await bcrypt.hash(randomPassword, 10);
 
     
     const user = await User.create({
       email,
-      password: hashedPassword,
+      password: randomPassword,
       role: "user",
       adminId: adminId,
       name

@@ -5,6 +5,51 @@ import jwt from "jsonwebtoken";
 const generateToken = (id) =>
   jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "30d" });
 
+
+export const registerAdmin = asyncHandler(async (req, res) => {
+  const { name, email, password, role } = req.body;
+
+  // Check all fields
+  if (!name || !email || !password || !role) {
+    res.status(400);
+    throw new Error("Please provide name, email, password, and role");
+  }
+
+  // Ensure role is 'admin'
+  if (role !== "admin") {
+    res.status(400);
+    throw new Error("Role must be admin for this route");
+  }
+
+  // Check if admin already exists
+  const adminExists = await User.findOne({ email });
+  if (adminExists) {
+    res.status(400);
+    throw new Error("Admin already exists");
+  }
+
+  // Create admin
+  const admin = await User.create({
+    name,
+    email,
+    password,
+    role,
+  });
+
+  if (admin) {
+    res.status(201).json({
+      _id: admin._id,
+      name: admin.name,
+      email: admin.email,
+      role: admin.role,
+      token: generateToken(admin._id),
+    });
+  } else {
+    res.status(400);
+    throw new Error("Invalid Admin Data");
+  }
+});
+
 export const loginAdmin = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
