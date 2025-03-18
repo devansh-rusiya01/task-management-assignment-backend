@@ -1,4 +1,7 @@
 Role-Based Task Management Backend
+
+
+
 This is the backend implementation for a Role-Based Task Management Web Application built using the MERN Stack (MongoDB, Express, React, Node.js).
 The system facilitates hierarchical task assignment within teams, supporting host-member relationships, weekly task assignments, and secure user authentication & authorization.
 
